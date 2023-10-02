@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <center>
+        <h1 class="display-1">Info Cuaca Ibukota Provinsi Di Jawa</h1>
+        <h1 class="display-4">01 Oktober, 2023</h1>
+    </center>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Jawa Timur</h5>
+                        <i class="fas fa-cloud fa-2x"></i>
+                        <h6>
+                        </h6>
+                        <div class="button">
+                            <button type="button" class="btn btn-primary" onclick="jatim()">Press to see</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Jawa Tengah</h5>
+                        <i class="fas fa-cloud fa-2x"></i>
+                        <h6>
+                        </h6>
+                        <div class="button">
+                            <button type="button" class="btn btn-primary" onclick="jateng()">Press to see</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Jawa Barat</h5>
+                        <i class="fas fa-cloud fa-2x"></i>
+                        <h6>
+                        </h6>
+                        <div class="button">
+                            <button type="button" class="btn btn-primary"  onclick="jabar()">Press to see</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div id="display">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div id="display2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div id="display3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        function jatim() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                var xmlDoc = this.responseXML;
+                var cityData = xmlDoc.getElementsByTagName("area");
+
+                    for (var i = 0; i < cityData.length; i++) {
+                        var cityName = cityData[i].getElementsByTagName("name")[0].textContent;
+                        if (cityName === "Surabaya") {
+                        var humidityData = cityData[i].getElementsByTagName("parameter")[0].getElementsByTagName("value")[0].textContent;
+                        var maxTemperatureData = cityData[i].getElementsByTagName("parameter")[2].getElementsByTagName("value")[0].textContent;
+                        var minTemperatureData = cityData[i].getElementsByTagName("parameter")[4].getElementsByTagName("value")[0].textContent;
+                        var windSpeedData = cityData[i].getElementsByTagName("parameter")[8].getElementsByTagName("value")[0].textContent;
+
+                        var displayElement = document.getElementById("display");
+                        displayElement.innerHTML = "<h2>Cuaca di Surabaya:</h2>" +
+                            "<p>Kelembaban: " + humidityData + "%</p>" +
+                            "<p>Suhu Maksimum: " + maxTemperatureData + "°C</p>" +
+                            "<p>Suhu Minimum: " + minTemperatureData + "°C</p>" +
+                            "<p>Kecepatan Angin: " + windSpeedData + " Kt</p>";
+                        break;
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-JawaTimur.xml", true);
+            xhttp.send();
+        }
+
+        function jateng() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                var xmlDoc = this.responseXML;
+                var cityData = xmlDoc.getElementsByTagName("area");
+
+                    for (var i = 0; i < cityData.length; i++) {
+                        var cityName = cityData[i].getElementsByTagName("name")[0].textContent;
+                        if (cityName === "Semarang") {
+                        var humidityData = cityData[i].getElementsByTagName("parameter")[0].getElementsByTagName("value")[0].textContent;
+                        var maxTemperatureData = cityData[i].getElementsByTagName("parameter")[2].getElementsByTagName("value")[0].textContent;
+                        var minTemperatureData = cityData[i].getElementsByTagName("parameter")[4].getElementsByTagName("value")[0].textContent;
+                        var windSpeedData = cityData[i].getElementsByTagName("parameter")[8].getElementsByTagName("value")[0].textContent;
+
+                        var displayElement = document.getElementById("display2");
+                        displayElement.innerHTML = "<h2>Cuaca di Semarang:</h2>" +
+                            "<p>Kelembaban: " + humidityData + "%</p>" +
+                            "<p>Suhu Maksimum: " + maxTemperatureData + "°C</p>" +
+                            "<p>Suhu Minimum: " + minTemperatureData + "°C</p>" +
+                            "<p>Kecepatan Angin: " + windSpeedData + " Kt</p>";
+                        break;
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-JawaTengah.xml", true);
+            xhttp.send();
+        }
+
+        function jabar() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                var xmlDoc = this.responseXML;
+                var cityData = xmlDoc.getElementsByTagName("area");
+
+                    for (var i = 0; i < cityData.length; i++) {
+                        var cityName = cityData[i].getElementsByTagName("name")[0].textContent;
+                        if (cityName === "Bandung") {
+                        var humidityData = cityData[i].getElementsByTagName("parameter")[0].getElementsByTagName("value")[0].textContent;
+                        var maxTemperatureData = cityData[i].getElementsByTagName("parameter")[2].getElementsByTagName("value")[0].textContent;
+                        var minTemperatureData = cityData[i].getElementsByTagName("parameter")[4].getElementsByTagName("value")[0].textContent;
+                        var windSpeedData = cityData[i].getElementsByTagName("parameter")[8].getElementsByTagName("value")[0].textContent;
+
+                        var displayElement = document.getElementById("display3");
+                        displayElement.innerHTML = "<h2>Cuaca di Bandung:</h2>" +
+                            "<p>Kelembaban: " + humidityData + "%</p>" +
+                            "<p>Suhu Maksimum: " + maxTemperatureData + "°C</p>" +
+                            "<p>Suhu Minimum: " + minTemperatureData + "°C</p>" +
+                            "<p>Kecepatan Angin: " + windSpeedData + " Kt</p>";
+                        break;
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "https://data.bmkg.go.id/DataMKG/MEWS/DigitalForecast/DigitalForecast-JawaBarat.xml", true);
+            xhttp.send();
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
